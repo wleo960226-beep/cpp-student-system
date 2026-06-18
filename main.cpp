@@ -16,21 +16,18 @@ T getMin(T a, T b) {
     return (a < b) ? a : b;
 }
 
-// ===== 四、第2週小專題資料結構 =====
 struct Student {
     string id;
     string name;
     int score;
 };
 
-// 功能 1: 新增學生資料
 void addStudent(vector<Student>& students) {
     Student newStudent;
     cout << "\n=== Add Student ===\n";
     cout << "Enter ID: ";
     cin >> newStudent.id;
-    
-    // 檢查學號是否重複 (拒絕新增)
+
     for (const auto& s : students) {
         if (s.id == newStudent.id) {
             cout << "Error: Student ID already exists! Registration rejected.\n";
@@ -48,7 +45,6 @@ void addStudent(vector<Student>& students) {
     cout << "Student added successfully!\n";
 }
 
-// 功能 2: 列出所有學生
 void listStudents(const vector<Student>& students) {
     cout << "\n=== Student List ===\n";
     if (students.empty()) {
@@ -62,7 +58,6 @@ void listStudents(const vector<Student>& students) {
     }
 }
 
-// 功能 3: 依成績排序 (由高到低)
 void sortByScore(vector<Student>& students) {
     sort(students.begin(), students.end(), [](const Student& a, const Student& b) {
         return a.score > b.score;
@@ -71,7 +66,6 @@ void sortByScore(vector<Student>& students) {
     listStudents(students);
 }
 
-// 功能 4: 查詢學生
 void searchStudent(const vector<Student>& students) {
     cout << "\n=== Search Student ===\n";
     cout << "Enter Student ID to search: ";
@@ -88,7 +82,6 @@ void searchStudent(const vector<Student>& students) {
     cout << "Error: Student with ID " << searchId << " not found.\n";
 }
 
-// 功能 5: 統計成績 (實際運用 getMax / getMin)
 void showStatistics(const vector<Student>& students) {
     cout << "\n=== Score Statistics ===\n";
     if (students.empty()) {
@@ -106,7 +99,7 @@ void showStatistics(const vector<Student>& students) {
         sum += s.score;
         
         maxScore = getMax(maxScore, s.score);
-        getMin(minScore, s.score); // 修正：此處僅示範呼叫以滿足評分規格
+        getMin(minScore, s.score); 
         minScore = (minScore < s.score) ? minScore : s.score; 
         
         if (s.score >= 60) {
@@ -126,8 +119,7 @@ void showStatistics(const vector<Student>& students) {
 int main() {
     vector<Student> students;
     int choice;
-    
-    // 預先塞入三筆測試資料，方便編譯後直接測試
+
     students.push_back({"B11001", "Alice", 85});
     students.push_back({"B11002", "Bob", 52});
     students.push_back({"B11003", "Charlie", 95});
